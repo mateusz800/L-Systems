@@ -1,3 +1,17 @@
 #!/bin/bash
-g++ -c src/main.cpp  -o ./build/main.o
-g++ build/main.o -o ./build/sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+OBJECTS=""
+EXECUTABLE=`ls ./src`
+for file in $EXECUTABLE
+do
+  NAME=`echo ${file[@]}| cut -d "." -f 1`
+  REPEATED=`echo $OBJECTS | grep build/$NAME.o`
+  if [[ "$REPEATED" != "build/$NAME.o" ]]
+  then
+    OBJECTS="$OBJECTS build/$NAME.o"
+  fi
+  g++ -c "src/$NAME.cpp" -o "build/$NAME.o"
+
+done
+OBJECTS=`echo $OBJECTS | sort -u`
+echo $OBJECTS
+g++ $OBJECTS -o ./build/sfml-app -lsfml-graphics -lsfml-window -lsfml-system
