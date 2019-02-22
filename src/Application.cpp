@@ -1,5 +1,7 @@
 #include "Application.h"
-
+#include "LSystem.h"
+#include "LSystemDrawer.h"
+#include <iostream>
 
 
 Application::Application(){
@@ -7,12 +9,17 @@ Application::Application(){
 }
 
 void Application::Run(){
-    //LSystem lsystem;
-    //lsystem.SetAxiom('F');
-    //lsystem.SetRule('F',"F[-F][+F]");
-    //lsystem.SetGenerations(3);
-    //std::cout<<lsystem.GetString()<<std::endl;
+    LSystem lsystem;
+    lsystem.SetAxiom("F");
+    lsystem.AddRule('F',"F[-F][+F]");
+    lsystem.SetGenerations(5);
+    LSystemDrawer tree;
+    tree.SetLineLength(50);
+    tree.SetLSystem(lsystem.GetString());
+
+
     while (window->isOpen()){
+      window->clear();
       sf::Event event;
       while (window->pollEvent(event))
       {
@@ -20,7 +27,9 @@ void Application::Run(){
               window->close();
       }
 
-      window->clear();
+      tree.Draw(window);
+
+
       window->display();
     }
 }
