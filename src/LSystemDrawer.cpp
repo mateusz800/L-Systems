@@ -3,12 +3,12 @@
 #include <iostream>
 
 
-LSystemDrawer::LSystemDrawer(float lineLength,float angle):lineLength(lineLength),rotationAngle(angle){
+LSystemDrawer::LSystemDrawer(unsigned int lineLength,float angle):lineLength(lineLength),rotationAngle(angle){
   setStartingPosition();
 }
 
 void LSystemDrawer::setStartingPosition(){
-  positionStack.push(Position(300,500,0));
+  positionStack.push(Position(300,300,0));
 }
 
 void LSystemDrawer::move(sf::RenderWindow* window){
@@ -43,8 +43,12 @@ void LSystemDrawer::SetLSystem(std::string lsystem){
   this->lsystem=lsystem;
 }
 
-void LSystemDrawer::SetLineLength(float length){
+void LSystemDrawer::SetLineLength(unsigned int length){
   lineLength=length;
+}
+
+void LSystemDrawer::SetRotationAngle(float angle){
+  this->rotationAngle=angle;
 }
 
 void LSystemDrawer::Draw(sf::RenderWindow* window){

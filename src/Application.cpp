@@ -10,23 +10,30 @@ Application::Application(){
 
 void Application::Run(){
     LSystem lsystem;
-    lsystem.SetAxiom("F");
-    lsystem.AddRule('F',"F[-F][+F]");
-    lsystem.SetGenerations(5);
+    lsystem.SetAxiom("F+F+F+F");
+    lsystem.AddRule('F',"FF+F++F+F");
+    lsystem.SetGenerations(4);
     LSystemDrawer tree;
-    tree.SetLineLength(50);
+    tree.SetLineLength(30);
     tree.SetLSystem(lsystem.GetString());
-
+    tree.SetRotationAngle(30);
+    textField.SetPosition(100.0f,500.0f);
 
     while (window->isOpen()){
       window->clear();
       sf::Event event;
       while (window->pollEvent(event))
       {
-          if (event.type == sf::Event::Closed)
-              window->close();
-      }
+        switch(event.type){
+          case sf::Event::Closed:
+            window->close();
+            break;
+        }
+        textField.CheckEvent(event,window);
 
+
+      }
+      textField.Draw(window);
       tree.Draw(window);
 
 

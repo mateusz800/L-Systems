@@ -1,9 +1,10 @@
 #!/bin/bash
 OBJECTS=""
-EXECUTABLE=`ls ./src`
+EXECUTABLE=`ls ./src/*.cpp`
+EXECUTABLE="`echo $EXECUTABLE` `ls ./src/Components/*.cpp`"
 for file in $EXECUTABLE
 do
-  NAME=`echo ${file[@]}| cut -d "." -f 1`
+  NAME=`echo ${file[@]} |cut -d "/" -f 3,4 | cut -d "." -f 1`
   REPEATED=`echo $OBJECTS | grep build/$NAME.o`
   if [[ "$REPEATED" != *"build/$NAME.o"* ]]
   then

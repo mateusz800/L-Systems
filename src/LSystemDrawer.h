@@ -15,7 +15,7 @@ struct Position{
 class LSystemDrawer{
 private:
   std::string lsystem;
-  float lineLength;
+  unsigned int lineLength;
   float rotationAngle;
   std::stack<Position> positionStack;
   void setStartingPosition();
@@ -25,9 +25,10 @@ private:
   void push();
   void pop();
 public:
-  LSystemDrawer(float lineLength=100,float rotationAngle=30);
+  LSystemDrawer(unsigned int lineLength=100,float rotationAngle=30);
   void SetLSystem(std::string lsystem);
-  void SetLineLength(float length);
+  void SetLineLength(unsigned int length);
+  void SetRotationAngle(float angle);
   void Draw(sf::RenderWindow* window);
 
 
