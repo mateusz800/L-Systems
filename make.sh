@@ -15,4 +15,4 @@ do
 
 done
 OBJECTS=`echo $OBJECTS | sort -u`
-g++ $OBJECTS -o ./sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+g++ $OBJECTS -o ./lsystem -lsfml-graphics -lsfml-window -lsfml-system
